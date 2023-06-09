@@ -1,0 +1,24 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "arjenbalfoort@hotmail.com",
+                "Name": "Arjen Balfoort"
+            }
+        ],
+        "Category": "",
+        "Dependencies": [
+        ],
+        "EnabledByDefault": true,
+        "Id": "org.kde.plasma.desktop.solydkPanel",
+        "License": "GPL",
+        "Name": "SolydK Panel",
+                "ServiceTypes": [
+            "Plasma/LayoutTemplate"
+        ],
+        "Version": "1.0",
+        "Website": "https://solydxk.com"
+    },
+    "X-Plasma-ContainmentCategories": "panel",
+    "X-Plasma-Shell": "plasmashell"
+}

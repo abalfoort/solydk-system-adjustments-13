@@ -1,0 +1,12 @@
+[Desktop Action isotousb]
+Exec=iso-usb -i %f
+Icon=media-optical
+Name=ISO to USB
+Name[x-test]=xxISO to USBxx
+
+[Desktop Entry]
+Actions=isotousb;
+Icon=media-optical
+MimeType=application/x-cd-image;
+ServiceTypes=KonqPopupMenu/Plugin
+Type=Service

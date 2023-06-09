@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+ <icon_name>system-file-manager</icon_name>
+ <action id="org.kde.dolphin">
+  <description>Run Dolphin as root</description>
+ <description xml:lang="ar">شغل ثونار كجذر</description>
+ <description xml:lang="ast">Executar Dolphin como root</description>
+ <description xml:lang="be">Запусціць Dolphin ад root</description>
+ <description xml:lang="bg">Стартирай Dolphin като администратор</description>
+ <description xml:lang="ca">Executa Dolphin com a root</description>
+ <description xml:lang="cs">Spustit Dolphin jako root</description>
+ <description xml:lang="da">Kør Dolphin som root</description>
+ <description xml:lang="de">Dolphin als Systemverwalter starten</description>
+ <description xml:lang="el">Εκτέλεση Dolphin ως διαχειριστής</description>
+ <description xml:lang="en_AU">Run Dolphin as root</description>
+ <description xml:lang="en_GB">Run Dolphin as root</description>
+ <description xml:lang="es">Iniciar Dolphin como superusuario</description>
+ <description xml:lang="eu">Exekutatu Dolphin root gisa</description>
+ <description xml:lang="fa_IR">اجرای Dolphin به عنوان ریشه</description>
+ <description xml:lang="fi">Käynnistä Dolphin pääkäyttäjän oikeuksin.</description>
+ <description xml:lang="fr">Exécuter Dolphin en tant qu’administrateur</description>
+ <description xml:lang="gl">Executar Dolphin como administrador</description>
+ <description xml:lang="he">הפעל את Dolphin כמשתמש על</description>
+ <description xml:lang="hr">Pokreni Dolphin kao root korisnik</description>
+ <description xml:lang="hu">Dolphin futtatása rendszergazdaként</description>
+ <description xml:lang="id">Jalankan Dolphin sebagai root</description>
+ <description xml:lang="is">Keyra Dolphin sem kerfisstjóri (root)</description>
+ <description xml:lang="it">Esegui Dolphin come utente root</description>
+ <description xml:lang="ja">root で Dolphin を起動</description>
+ <description xml:lang="kk">Dolphin-ды әкімші ретінде орындау</description>
+ <description xml:lang="ko">Root 권한으로 Dolphin 작동</description>
+ <description xml:lang="lt">Vykdyti Dolphin administratoriaus teisėmis</description>
+ <description xml:lang="ms">Jalankan Dolphin sebagai root</description>
+ <description xml:lang="nb">Kjør Dolphin som root</description>
+ <description xml:lang="nl">Dolphin draaien met rootbevoegdheid</description>
+ <description xml:lang="nn">Køyr Dolphin som administrator</description>
+ <description xml:lang="oc">Aviar Dolphin en tant que root</description>
+ <description xml:lang="pl">Uruchom Dolphin jako root</description>
+ <description xml:lang="pt">Executar Dolphin como root</description>
+ <description xml:lang="pt_BR">Rodar Dolphin como superusuário</description>
+ <description xml:lang="ro">Pornește Dolphin ca root</description>
+ <description xml:lang="ru">Запустить Dolphin от суперпользователя</description>
+ <description xml:lang="sk">Spustiť Dolphin ako správca</description>
+ <description xml:lang="sl">Zaženi Dolphin kot skrbnik</description>
+ <description xml:lang="sq">Xhirojeni Dolphinin si rrënjë</description>
+ <description xml:lang="sv">Kör Dolphin som root</description>
+ <description xml:lang="th">เรียกทำงาน Dolphin ในฐานะ root</description>
+ <description xml:lang="tr">Dolphin'ı root olarak çalıştır</description>
+ <description xml:lang="uk">Запустити Dolphin з правами суперкористувача</description>
+ <description xml:lang="zh_CN">以 root 身份运行 Dolphin</description>
+ <description xml:lang="zh_TW">以 root 身份執行 Dolphin</description>
+ <message>Authentication is required to run Dolphin as root.</message>
+ <message xml:lang="ar">التحقق مطلوب لتشغيل ثونار كجذر</message>
+ <message xml:lang="ast">Ríquese l'autenticación pa executar Dolphin como root.</message>
+ <message xml:lang="be">Патрабуецца аўтэнтыфікацыя для запуску Dolphin ад root.</message>
+ <message xml:lang="bg">Изисква се удостоверяване за да стартирате Dolphin като администратор</message>
+ <message xml:lang="ca">Cal autenticació per executar Dolphin com a root.</message>
+ <message xml:lang="cs">Pro spuštění aplikace Dolphin jako root se vyžaduje autentizace.</message>
+ <message xml:lang="da">Der kræves godkendelse for at køre Dolphin som root.</message>
+ <message xml:lang="de">Legitimierung wird benötigt, um Dolphin als Systemverwalter zu starten.</message>
+ <message xml:lang="el">Απαιτείται πιστοποίηση για εκτέλεση του Dolphin ως διαχειριστής.</message>
+ <message xml:lang="en_AU">Authentication is required to run Dolphin as root.</message>
+ <message xml:lang="en_GB">Authentication is required to run Dolphin as root.</message>
+ <message xml:lang="es">Es necesario autentificarse para iniciar Dolphin como superusuario.</message>
+ <message xml:lang="eu">Autentifikazio beharrezkoa da Dolphin root gisa exekutatzeko</message>
+ <message xml:lang="fa_IR">برای اجرای Dolphin به عنوان ریشه، تایید هویت اجباری ست.</message>
+ <message xml:lang="fi">Jotta Dolphin voidaan käynnistää pääkäyttäjän oikeuksin, todennus tarvitaan.</message>
+ <message xml:lang="fr">Une authentification est requise pour exécuter Dolphin en tant qu’administrateur.</message>
+ <message xml:lang="gl">Requírese autenticación para executar Dolphin como administrador</message>
+ <message xml:lang="he">נדרש אימות כדי להפעיל את Dolphin כמשתמש על.</message>
+ <message xml:lang="hr">Potrebna je provjera za pokretanje Dolphina kao root.</message>
+ <message xml:lang="hu">A Dolphin rendszergazdai futtatásához hitelesítés szükséges.</message>
+ <message xml:lang="id">Otentikasi diperlukan untuk menjalankan Dolphin sebagai root.</message>
+ <message xml:lang="is">Auðkenningar er krafist til að keyra Dolphin sem kerfisstjóri (root)</message>
+ <message xml:lang="it">Per eseguire Dolphin come utente root è richiesta l'autenticazione.</message>
+ <message xml:lang="ja">root で Dolphin を起動するには認証が必要です。</message>
+ <message xml:lang="kk">Dolphin-ды әкімші ретінде орындау үшін аутентификация керек.</message>
+ <message xml:lang="ko">Root 권한으로 Dolphin를 작동하려면 인증이 필요합니다.</message>
+ <message xml:lang="lt">Dolphin vykdymui administratoriaus teisėmis, reikalingas tapatybės nustatymas.</message>
+ <message xml:lang="ms">Pengesahihan diperlukan untuk jalankan Dolphin sebagai root.</message>
+ <message xml:lang="nb">Identitetsbekreftelse kreves for å kjøre Dolphin som root.</message>
+ <message xml:lang="nl">Authenticatie is vereist om Dolphin met rootbevoegdheid te draaien.</message>
+ <message xml:lang="nn">Autentisering krevst for å køyra Dolphin som administrator</message>
+ <message xml:lang="oc">Una autentificacion es requesida per aviar Dolphin en tant que root.</message>
+ <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby uruchomić program Dolphin w trybie administratora.</message>
+ <message xml:lang="pt">Autenticação necessária para executar Dolphin como root.</message>
+ <message xml:lang="pt_BR">Autenticação é requerida para rodar Dolphin como superusuário.</message>
+ <message xml:lang="ro">Pentru a porni Dolphin ca root este nevoie de autentificare.</message>
+ <message xml:lang="ru">Требуется аутентификация для запуска Dolphin от суперпользователя</message>
+ <message xml:lang="sk">Na spustenie Dolphinu ako správca je potrebné overenie totožnosti.</message>
+ <message xml:lang="sl">Za zagon programa Dolphin s skrbniškimi pravicami je potrebna overitev.</message>
+ <message xml:lang="sq">Që të xhirohet Dolphin-i si rrënjë, lypset mirëfilltësim.</message>
+ <message xml:lang="sv">Autentisering krävs för att köra Dolphin som root.</message>
+ <message xml:lang="th">ต้องยืนยันตัวบุคคลก่อนเรียกทำงาน Dolphin ในฐานะ root</message>
+ <message xml:lang="tr">Dolphin'ı root olarak çalıştırmak için kimlik doğrulaması gereklidir</message>
+ <message xml:lang="uk">Вимагається розпізнавання для запуску Dolphin з правами суперкористувача.</message>
+ <message xml:lang="zh_CN">以 root 身份运行 Dolphin 需要进行身份验证。</message>
+ <message xml:lang="zh_TW">要以 root 身份執行 Dolphin 需要認證。</message>
+ <defaults>
+ <allow_any>no</allow_any>
+ <allow_inactive>auth_admin</allow_inactive>
+ <allow_active>auth_admin</allow_active>
+ </defaults>
+ <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/dolphin</annotate>
+ <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+ </action>
+
+</policyconfig>

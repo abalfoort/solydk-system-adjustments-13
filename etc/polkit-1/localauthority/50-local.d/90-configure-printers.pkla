@@ -1,0 +1,6 @@
+[Password-less configuration of printers]
+Identity=unix-group:lpadmin
+Action=org.opensuse.cupspkhelper.mechanism.*
+ResultAny=yes
+ResultInactive=yes
+ResultActive=yes

@@ -1,0 +1,53 @@
+Source: solydk-system-adjustments-13
+Section: admin
+Priority: optional
+Maintainer: Arjen Balfoort <arjenbalfoort@hotmail.com>
+Build-Depends: debhelper-compat (= 12)
+Standards-Version: 4.5.0
+
+Package: solydk-system-adjustments-13
+Architecture: all
+Depends: ${misc:Depends}, 
+  evolvere-2-blue,
+  oxygencursors,
+  gtk2-engines-pixbuf,
+  plasma-desktop,
+  gtk3-engines-breeze,
+  kde-style-breeze,
+  kwin-style-breeze,
+  breeze-icon-theme,
+  fonts-roboto-slab,
+  fonts-clear-sans
+Recommends: plymouth,
+  lightdm,
+  lightdm-gtk-greeter,
+  baloo-kf5,
+  kde-spectacle,
+  kdeconnect,
+  plasma-dataengines-addons,
+  plasma-widgets-addons,
+  kdeplasma-addons-data,
+  kdenetwork-filesharing,
+  plasma-nm,
+  plasma-browser-integration,
+  libreoffice-style-breeze,
+  apparmor,
+  apparmor-utils,
+  apparmor-profiles,
+  apparmor-profiles-extra,
+  firefox-solydxk-adjustments,
+  thunderbird-solydxk-adjustments,
+  xdg-utils,
+  udisks2
+Conflicts: solydx-system-adjustments-11,
+  solydx-system-adjustments-12,
+  solydx-system-adjustments-13,
+  solydk-system-adjustments-11,
+  solydk-system-adjustments-12
+Replaces: solydx-system-adjustments-11,
+  solydx-system-adjustments-12,
+  solydx-system-adjustments-13,
+  solydk-system-adjustments-11,
+  solydk-system-adjustments-12
+Description: Adjustments for SolydK 13.
+ This includes configuration and graphical changes.

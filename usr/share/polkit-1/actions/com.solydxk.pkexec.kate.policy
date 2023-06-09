@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+ <icon_name>kate</icon_name>
+ <action id="org.kde.kate">
+  <description>Run Kate as root</description>
+ <description xml:lang="ar">شغل ثونار كجذر</description>
+ <description xml:lang="ast">Executar Kate como root</description>
+ <description xml:lang="be">Запусціць Kate ад root</description>
+ <description xml:lang="bg">Стартирай Kate като администратор</description>
+ <description xml:lang="ca">Executa Kate com a root</description>
+ <description xml:lang="cs">Spustit Kate jako root</description>
+ <description xml:lang="da">Kør Kate som root</description>
+ <description xml:lang="de">Kate als Systemverwalter starten</description>
+ <description xml:lang="el">Εκτέλεση Kate ως διαχειριστής</description>
+ <description xml:lang="en_AU">Run Kate as root</description>
+ <description xml:lang="en_GB">Run Kate as root</description>
+ <description xml:lang="es">Iniciar Kate como superusuario</description>
+ <description xml:lang="eu">Exekutatu Kate root gisa</description>
+ <description xml:lang="fa_IR">اجرای Kate به عنوان ریشه</description>
+ <description xml:lang="fi">Käynnistä Kate pääkäyttäjän oikeuksin.</description>
+ <description xml:lang="fr">Exécuter Kate en tant qu’administrateur</description>
+ <description xml:lang="gl">Executar Kate como administrador</description>
+ <description xml:lang="he">הפעל את Kate כמשתמש על</description>
+ <description xml:lang="hr">Pokreni Kate kao root korisnik</description>
+ <description xml:lang="hu">Kate futtatása rendszergazdaként</description>
+ <description xml:lang="id">Jalankan Kate sebagai root</description>
+ <description xml:lang="is">Keyra Kate sem kerfisstjóri (root)</description>
+ <description xml:lang="it">Esegui Kate come utente root</description>
+ <description xml:lang="ja">root で Kate を起動</description>
+ <description xml:lang="kk">Kate-ды әкімші ретінде орындау</description>
+ <description xml:lang="ko">Root 권한으로 Kate 작동</description>
+ <description xml:lang="lt">Vykdyti Kate administratoriaus teisėmis</description>
+ <description xml:lang="ms">Jalankan Kate sebagai root</description>
+ <description xml:lang="nb">Kjør Kate som root</description>
+ <description xml:lang="nl">Kate draaien met rootbevoegdheid</description>
+ <description xml:lang="nn">Køyr Kate som administrator</description>
+ <description xml:lang="oc">Aviar Kate en tant que root</description>
+ <description xml:lang="pl">Uruchom Kate jako root</description>
+ <description xml:lang="pt">Executar Kate como root</description>
+ <description xml:lang="pt_BR">Rodar Kate como superusuário</description>
+ <description xml:lang="ro">Pornește Kate ca root</description>
+ <description xml:lang="ru">Запустить Kate от суперпользователя</description>
+ <description xml:lang="sk">Spustiť Kate ako správca</description>
+ <description xml:lang="sl">Zaženi Kate kot skrbnik</description>
+ <description xml:lang="sq">Xhirojeni Katein si rrënjë</description>
+ <description xml:lang="sv">Kör Kate som root</description>
+ <description xml:lang="th">เรียกทำงาน Kate ในฐานะ root</description>
+ <description xml:lang="tr">Kate'ı root olarak çalıştır</description>
+ <description xml:lang="uk">Запустити Kate з правами суперкористувача</description>
+ <description xml:lang="zh_CN">以 root 身份运行 Kate</description>
+ <description xml:lang="zh_TW">以 root 身份執行 Kate</description>
+ <message>Authentication is required to run Kate as root.</message>
+ <message xml:lang="ar">التحقق مطلوب لتشغيل ثونار كجذر</message>
+ <message xml:lang="ast">Ríquese l'autenticación pa executar Kate como root.</message>
+ <message xml:lang="be">Патрабуецца аўтэнтыфікацыя для запуску Kate ад root.</message>
+ <message xml:lang="bg">Изисква се удостоверяване за да стартирате Kate като администратор</message>
+ <message xml:lang="ca">Cal autenticació per executar Kate com a root.</message>
+ <message xml:lang="cs">Pro spuštění aplikace Kate jako root se vyžaduje autentizace.</message>
+ <message xml:lang="da">Der kræves godkendelse for at køre Kate som root.</message>
+ <message xml:lang="de">Legitimierung wird benötigt, um Kate als Systemverwalter zu starten.</message>
+ <message xml:lang="el">Απαιτείται πιστοποίηση για εκτέλεση του Kate ως διαχειριστής.</message>
+ <message xml:lang="en_AU">Authentication is required to run Kate as root.</message>
+ <message xml:lang="en_GB">Authentication is required to run Kate as root.</message>
+ <message xml:lang="es">Es necesario autentificarse para iniciar Kate como superusuario.</message>
+ <message xml:lang="eu">Autentifikazio beharrezkoa da Kate root gisa exekutatzeko</message>
+ <message xml:lang="fa_IR">برای اجرای Kate به عنوان ریشه، تایید هویت اجباری ست.</message>
+ <message xml:lang="fi">Jotta Kate voidaan käynnistää pääkäyttäjän oikeuksin, todennus tarvitaan.</message>
+ <message xml:lang="fr">Une authentification est requise pour exécuter Kate en tant qu’administrateur.</message>
+ <message xml:lang="gl">Requírese autenticación para executar Kate como administrador</message>
+ <message xml:lang="he">נדרש אימות כדי להפעיל את Kate כמשתמש על.</message>
+ <message xml:lang="hr">Potrebna je provjera za pokretanje Katea kao root.</message>
+ <message xml:lang="hu">A Kate rendszergazdai futtatásához hitelesítés szükséges.</message>
+ <message xml:lang="id">Otentikasi diperlukan untuk menjalankan Kate sebagai root.</message>
+ <message xml:lang="is">Auðkenningar er krafist til að keyra Kate sem kerfisstjóri (root)</message>
+ <message xml:lang="it">Per eseguire Kate come utente root è richiesta l'autenticazione.</message>
+ <message xml:lang="ja">root で Kate を起動するには認証が必要です。</message>
+ <message xml:lang="kk">Kate-ды әкімші ретінде орындау үшін аутентификация керек.</message>
+ <message xml:lang="ko">Root 권한으로 Kate를 작동하려면 인증이 필요합니다.</message>
+ <message xml:lang="lt">Kate vykdymui administratoriaus teisėmis, reikalingas tapatybės nustatymas.</message>
+ <message xml:lang="ms">Pengesahihan diperlukan untuk jalankan Kate sebagai root.</message>
+ <message xml:lang="nb">Identitetsbekreftelse kreves for å kjøre Kate som root.</message>
+ <message xml:lang="nl">Authenticatie is vereist om Kate met rootbevoegdheid te draaien.</message>
+ <message xml:lang="nn">Autentisering krevst for å køyra Kate som administrator</message>
+ <message xml:lang="oc">Una autentificacion es requesida per aviar Kate en tant que root.</message>
+ <message xml:lang="pl">Wymagane jest uwierzytelnienie, aby uruchomić program Kate w trybie administratora.</message>
+ <message xml:lang="pt">Autenticação necessária para executar Kate como root.</message>
+ <message xml:lang="pt_BR">Autenticação é requerida para rodar Kate como superusuário.</message>
+ <message xml:lang="ro">Pentru a porni Kate ca root este nevoie de autentificare.</message>
+ <message xml:lang="ru">Требуется аутентификация для запуска Kate от суперпользователя</message>
+ <message xml:lang="sk">Na spustenie Kateu ako správca je potrebné overenie totožnosti.</message>
+ <message xml:lang="sl">Za zagon programa Kate s skrbniškimi pravicami je potrebna overitev.</message>
+ <message xml:lang="sq">Që të xhirohet Kate-i si rrënjë, lypset mirëfilltësim.</message>
+ <message xml:lang="sv">Autentisering krävs för att köra Kate som root.</message>
+ <message xml:lang="th">ต้องยืนยันตัวบุคคลก่อนเรียกทำงาน Kate ในฐานะ root</message>
+ <message xml:lang="tr">Kate'ı root olarak çalıştırmak için kimlik doğrulaması gereklidir</message>
+ <message xml:lang="uk">Вимагається розпізнавання для запуску Kate з правами суперкористувача.</message>
+ <message xml:lang="zh_CN">以 root 身份运行 Kate 需要进行身份验证。</message>
+ <message xml:lang="zh_TW">要以 root 身份執行 Kate 需要認證。</message>
+ <defaults>
+ <allow_any>no</allow_any>
+ <allow_inactive>auth_admin</allow_inactive>
+ <allow_active>auth_admin</allow_active>
+ </defaults>
+ <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/kate</annotate>
+ <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+ </action>
+
+</policyconfig>

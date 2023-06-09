@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=SolydK
+Description=SolydK Plymouth Theme - Static Image.
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/solydk-img
+ScriptFile=/usr/share/plymouth/themes/solydk-img/solydk-img.script

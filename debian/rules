@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+source := $(shell dpkg-parsechangelog -S Source)
+
+%:
+	dh $@
+
+override_dh_builddeb:
+	dh_builddeb
+	# Cleanup build directory when done
+	rm -rf ./debian/$(source)

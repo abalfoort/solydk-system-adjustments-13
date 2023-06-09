@@ -1,0 +1,19 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "arjenbalfoort@hotmail.com",
+                "Name": "Arjen Balfoort"
+            }
+        ],
+        "Category": "",
+        "Description": "SolydK Dark by Arjen Balfoort",
+        "EnabledByDefault": true,
+        "Id": "solydk-dark",
+        "License": "LGPL",
+        "Name": "SolydK Dark",
+        "Version": "5.103.0",
+        "Website": "https://plasma.kde.org"
+    },
+    "X-Plasma-API": "5.0"
+}

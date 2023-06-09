@@ -1,0 +1,2 @@
+Dpkg::Progress-Fancy "1";
+Dpkg::Progress-Fancy::Progress-Bg "%1b[48;5;153m";

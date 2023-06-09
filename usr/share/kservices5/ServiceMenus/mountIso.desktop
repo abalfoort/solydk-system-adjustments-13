@@ -1,0 +1,23 @@
+[Desktop Action mountiso]
+Exec=DEVICE=$(udisksctl loop-setup -r -f '%u' | grep -o '/dev/loop[0-9]*'); MOUNT=$(udisksctl mount -b ${DEVICE}p1  | grep -o '/media/.*[^.]'); xdg-open "$MOUNT";
+Icon=media-optical
+Name=Mount ISO Image
+Name[de]=ISO Abbild einbinden
+Name[es]=Montar Imagen ISO
+Name[fr]=Monter Image ISO
+Name[it]=Montare Immagine ISO
+Name[ja]=イメージ ISO に乗るために
+Name[ko]=이미지 ISO를 세운다
+Name[nl]=ISO image koppelen
+Name[pt]=Montar Imagem o ISO
+Name[ru]=Смонтировать ISO-образ
+Name[uk]=Змонтувати ISO-образ
+Name[zh_CN]=挂载 ISO 镜像
+Name[x-test]=xxMount ISO Imagexx
+
+[Desktop Entry]
+Actions=mountiso;
+Icon=media-optical
+MimeType=application/x-cd-image;
+ServiceTypes=KonqPopupMenu/Plugin
+Type=Service

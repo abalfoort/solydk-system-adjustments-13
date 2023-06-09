@@ -1,0 +1,2 @@
+#!/bin/bash
+zenity --info --text=`md5sum "$1"` --no-wrap

@@ -1,0 +1,12 @@
+[Desktop Action mountsfs]
+Exec=DEVICE=$(udisksctl loop-setup -r -f '%u' | grep -o '/dev/loop[0-9]*'); MOUNT=$(udisksctl mount -b ${DEVICE}  | grep -o '/media/.*[^.]'); xdg-open "$MOUNT";
+Icon=media-optical
+Name=Mount squasfs file
+Name[x-test]=xxMount squasfs filexx
+
+[Desktop Entry]
+Actions=mountsfs;
+Icon=media-optical
+MimeType=application/vnd.squasfs;
+ServiceTypes=KonqPopupMenu/Plugin
+Type=Service
