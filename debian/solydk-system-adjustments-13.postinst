@@ -149,8 +149,10 @@ case "$1" in
         fi
       fi
       
-      if ! grep -q 'GRUB_DISABLE_OS_PROBER=' $DEFGRUB; then
-        # Only append if GRUB_THEME= is not in DEFGRUB
+      if grep -q 'GRUB_DISABLE_OS_PROBER=' $DEFGRUB; then
+        sed -i 's|# GRUB_DISABLE_OS_PROBER|GRUB_DISABLE_OS_PROBER|' $DEFGRUB
+      else
+        # Only append if GRUB_DISABLE_OS_PROBER= is not in DEFGRUB
         echo -e '\n# Disable os-prober\nGRUB_DISABLE_OS_PROBER=false' >> $DEFGRUB
         UPDGRUB=true
       fi
