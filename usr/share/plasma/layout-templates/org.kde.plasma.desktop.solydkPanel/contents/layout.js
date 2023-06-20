@@ -84,6 +84,9 @@ systrayContainment.writeConfig("hiddenItems",["org.kde.plasma.clipboard"])
 // Add notifications
 panel.addWidget("org.kde.plasma.notifications")
 
+// Add keyboardlayout
+panel.addWidget("org.kde.plasma.keyboardlayout")
+
 // Add the clock
 var clock = panel.addWidget("org.kde.plasma.digitalclock")
 clock.writeConfig("showDate", false)
