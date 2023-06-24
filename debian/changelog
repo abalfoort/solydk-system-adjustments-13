@@ -1,3 +1,10 @@
+solydk-system-adjustments-13 (1.0.3) stable; urgency=low
+
+  * Add Grub SolydK light theme (default)
+    Check /etc/default/grub for configuration
+
+ -- Arjen Balfoort <arjenbalfoort@hotmail.com>  Thu, 22 Jun 2023 15:25:59 +0200
+
 solydk-system-adjustments-13 (1.0.2) stable; urgency=low
 
   * Add keyboardlayout
