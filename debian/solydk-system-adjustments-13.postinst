@@ -55,7 +55,7 @@ function install_root_files {
 function adust_trigger_files {
     # Fix favorites in kickoff
     FAVS='preferred://browser,thunderbird.desktop,libreoffice-startcenter.desktop,org.kde.discover.desktop,systemsettings.desktop,org.kde.konsole.desktop'
-    
+
     KICKOFF='/usr/share/plasma/plasmoids/org.kde.plasma.kickoff/contents/config/main.xml'
     if [ ! -e $KICKOFF ]; then
         if [ -e $KICKOFF.divert ]; then
@@ -63,7 +63,7 @@ function adust_trigger_files {
         fi
     fi
     [ -e $KICKOFF ] && sed -i -e "s#preferred://browser,.*\.desktop#$FAVS#" $KICKOFF
-    
+
     KICKER='/usr/share/plasma/plasmoids/org.kde.plasma.kicker/contents/config/main.xml'
     if [ ! -e $KICKER ]; then
         if [ -e $KICKER.divert ]; then
@@ -95,7 +95,7 @@ case "$1" in
     if [ -e "$KF5KDESUD" ]; then
       chmod g+s "$KF5KDESUD"
     fi
-    
+
     # Configure LightDM
     CONF='/etc/lightdm/lightdm-gtk-greeter.conf'
     if [ -e '/etc/lightdm/lightdm-kde-greeter.conf' ]; then
@@ -128,36 +128,42 @@ case "$1" in
       sed -i 's/^#greeter-hide-users=/greeter-hide-users=false/' $CONF
       sed -i 's/^#allow-user-switching=.*/allow-user-switching=true/' $CONF
     fi
-    
+
     CONF='/etc/lightdm/users.conf'
     if [ -e $CONF ]; then
       sed -i -e '/^minimum-uid=/ c minimum-uid=1000' $CONF
     fi
-    
+
     # Change Grub2 Theme
     UPDGRUB=false
     DEFGRUB='/etc/default/grub'
+    GRUBTHEMES='/boot/grub/themes'
     if [ -f "$DEFGRUB" ]; then
+      UPDGRUB=true
+
+      # Set Grub theme
       if grep -q '^GRUB_THEME=' $DEFGRUB; then
-        sed -i 's|^GRUB_THEME=.*|GRUB_THEME=/boot/grub/themes/solydxk/theme.txt|' $DEFGRUB
-        UPDGRUB=true
+        if $(grep -qs "/solydxk/theme.txt" $DEFGRUB); then
+          # Keep the dark theme for upgrade users
+          sed -i 's|# Set theme|# Check available themes in /boot/grub/themes|' $DEFGRUB
+          sed -i 's|^GRUB_THEME=.*|GRUB_THEME=/boot/grub/themes/solydxk-dark/theme.txt|' $DEFGRUB
+        fi
       else
         if ! grep -q 'GRUB_THEME=' $DEFGRUB; then
           # Only append if GRUB_THEME= is not in DEFGRUB
-          echo -e '\n# Set theme\nGRUB_THEME=/boot/grub/themes/solydxk/theme.txt' >> $DEFGRUB
-          UPDGRUB=true
+          echo -e '\n# Check available themes in /boot/grub/themes\nGRUB_THEME=/boot/grub/themes/solydxk-light/theme.txt' >> $DEFGRUB
         fi
       fi
-      
+
+      # Enable os-prober
       if grep -q 'GRUB_DISABLE_OS_PROBER=' $DEFGRUB; then
         sed -i 's|# GRUB_DISABLE_OS_PROBER|GRUB_DISABLE_OS_PROBER|' $DEFGRUB
       else
         # Only append if GRUB_DISABLE_OS_PROBER= is not in DEFGRUB
         echo -e '\n# Disable os-prober\nGRUB_DISABLE_OS_PROBER=false' >> $DEFGRUB
-        UPDGRUB=true
       fi
     fi
-    
+
     # Change Plymouth theme when needed
     CONF='/etc/plymouth/plymouthd.conf'
     if [ -e $CONF ]; then
@@ -170,17 +176,17 @@ case "$1" in
         UPDGRUB=true
       fi
     fi
-    
+
     # Update Grub2
     if $UPDGRUB && [ -e /usr/sbin/update-grub ]; then
       update-grub
     fi
-    
+
     GPG='/etc/skel/.gnupg'
     if [ -e $GPG ]; then
       chmod 700 $GPG
     fi
-    
+
     DOLPHINDIR='/usr/share/kxmlgui5/dolphin'
     if [ ! -d "$DOLPHINDIR" ]; then
       mkdir -p "$DOLPHINDIR"
@@ -188,7 +194,7 @@ case "$1" in
 
     install_root_files
     adust_trigger_files
-   
+
   ;;
 
   upgrade|update)
