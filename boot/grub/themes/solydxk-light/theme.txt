@@ -22,10 +22,10 @@ terminal-border: "0"
         height = 20
         width = 100%
         font = "Unifont Regular 16"
-        text_color = "#243e4b"
-        fg_color = "#8eb6c9"
-        bg_color = "#7eacc1"
-        border_color = "#7eacc1"
+        text_color = "#d4f5ff"
+        fg_color = "#7eacc1"
+        bg_color = "#8eb6c9"
+        border_color = "#8eb6c9"
         text = "@TIMEOUT_NOTIFICATION_MIDDLE@"
 }
 
