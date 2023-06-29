@@ -1,3 +1,9 @@
+solydk-system-adjustments-13 (1.0.5) stable; urgency=low
+
+  * Replace desktop-grub.png with a generic black image
+
+ -- Arjen Balfoort <arjenbalfoort@hotmail.com>  Thu, 29 Jun 2023 08:21:30 +0200
+
 solydk-system-adjustments-13 (1.0.4) stable; urgency=low
 
   * Adjusted grub theme colors
