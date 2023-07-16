@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=SolydK Light
+Description=SolydK Light Plymouth Theme.
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/solydk-light
+ScriptFile=/usr/share/plymouth/themes/solydk-light/solydk-light.script

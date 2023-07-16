@@ -7,18 +7,18 @@
             }
         ],
         "Category": "",
-        "Dependencies": [
-        ],
+        "Description": "SolydK panel featuring application launcher, task manager and system tray",
         "EnabledByDefault": true,
         "Id": "org.kde.plasma.desktop.solydkPanel",
-        "License": "GPL",
+        "License": "LGPLv2+",
         "Name": "SolydK Panel",
-                "ServiceTypes": [
+        "ServiceTypes": [
             "Plasma/LayoutTemplate"
         ],
-        "Version": "1.0",
         "Website": "https://solydxk.com"
     },
-    "X-Plasma-ContainmentCategories": "panel",
+    "X-Plasma-ContainmentCategories": [
+        "panel"
+    ],
     "X-Plasma-Shell": "plasmashell"
 }

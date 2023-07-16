@@ -1,44 +1,29 @@
-[Desktop][org.kde.plasma.desktop]
-Containment=org.kde.plasma.folder
-
 [kdeglobals][KDE]
-LookAndFeelPackage=org.kde.solydkdark.desktop
-widgetStyle=breeze
-SingleClick=false
+widgetStyle=Breeze
 
 [kdeglobals][General]
 ColorScheme=SolydKDark
-Name=SolydK Dark
-fixed=Monospace,10,-1,0,50,0,0,0,0,0
-font=Clear Sans,11,-1,0,50,0,0,0,0,0
-menuFont=Clear Sans,11,-1,0,50,0,0,0,0,0
-shadeSortColumn=true
-smallestReadableFont=Clear Sans,10,-1,0,50,0,0,0,0,0
-toolBarFont=Clear Sans,10,-1,0,50,0,0,0,0,0
 
 [kdeglobals][Icons]
 Theme=evolvere-2-blue
 
-[kdeglobals][WM]
-activeFont=Clear Sans,11,-1,0,75,0,0,0,0,0
-
 [plasmarc][Theme]
 name=solydk-dark
+
+[Wallpaper]
+Image=solydk-dark
 
 [kcminputrc][Mouse]
 cursorTheme=oxy-white
 
 [kwinrc][WindowSwitcher]
-LayoutName=org.kde.solydkdark.desktop
+LayoutName=org.kde.solydklight.desktop
 
 [kwinrc][DesktopSwitcher]
-LayoutName=org.kde.solydkdark.desktop
+LayoutName=org.kde.solydklight.desktop
 
 [kwinrc][org.kde.kdecoration2]
 library=org.kde.breeze
 
 [KSplash]
 Theme=org.kde.solydkdark.desktop
-
-[Wallpaper]
-Image=SolydKDark

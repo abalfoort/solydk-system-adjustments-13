@@ -17,19 +17,22 @@ set -e
 #
 
 # Set the name of the Plymouth theme
-PLYMOUTH_THEME='solydk-logo'
+PLYMOUTH_THEME='solydk-light'
+
+ISCHROOT=false
+if [ "$(stat -c %d:%i /)" != "$(stat -c %d:%i /proc/1/root/.)" ]; then
+  ISCHROOT=true
+fi
 
 function sed_append_sting {
   PATTERN=$1
   LINE=$2
   FLE=$3
 
-  if [ -e $FLE ]; then
-    if grep -q "$PATTERN\s*$" "$FLE"; then
-      # Escape forward slashes
-      LINE=$(echo $LINE | sed 's/\//\\\//g')
-      sed -i -e "s/.*$PATTERN.*/$LINE/" "$FLE"
-    elif ! grep -q "$PATTERN" "$FLE"; then
+  if [ -e "$FLE" ]; then
+    if grep -q "$PATTERN" "$FLE"; then
+      sed -i -e "s|$PATTERN|$LINE|" "$FLE"
+    else
       echo $LINE >> "$FLE"
     fi
   fi
@@ -82,135 +85,156 @@ function adust_trigger_files {
     [ -e $KATE ] && sed -i 's/;Development//' $KATE
 }
 
+function updates-alternatives {
+    # Set default theme
+    DT_THEME='/usr/share/desktop-base/active-theme'
+    update-alternatives --install $DT_THEME desktop-theme /usr/share/desktop-base/solydk-light-theme 100
+    update-alternatives --install $DT_THEME desktop-theme /usr/share/desktop-base/solydk-dark-theme 100
+    update-alternatives --install $DT_THEME desktop-theme /usr/share/desktop-base/solydk-black-theme 100
+    update-alternatives --auto desktop-theme
+    
+    # Set grub background
+    DT_GRUB='/usr/share/images/desktop-base/desktop-grub.png'
+    update-alternatives --install $DT_GRUB desktop-grub /usr/share/desktop-base/solydk-light-theme/grub/grub-16x9.png 30
+    update-alternatives --install $DT_GRUB desktop-grub /usr/share/desktop-base/solydk-light-theme/grub/grub-4x3.png 30
+    update-alternatives --install $DT_GRUB desktop-grub /usr/share/desktop-base/solydk-dark-theme/grub/grub-16x9.png 30
+    update-alternatives --install $DT_GRUB desktop-grub /usr/share/desktop-base/solydk-dark-theme/grub/grub-4x3.png 30
+    update-alternatives --install $DT_GRUB desktop-grub /usr/share/desktop-base/solydk-black-theme/grub/grub-16x9.png 30
+    update-alternatives --install $DT_GRUB desktop-grub /usr/share/desktop-base/solydk-black-theme/grub/grub-4x3.png 30
+    update-alternatives --auto desktop-grub
+}
+
 case "$1" in    
-  configure|reconfigure)
-    # Create a link to kdesu in /usr/bin
-    KDESU='/usr/bin/kdesu'
-    KF5KDESU="$(kf5-config --path libexec)kf5/kdesu"
-    KF5KDESUD="$KF5KDESU"d
-    if [ ! -e "$KDESU" ] && [ -e "$KF5KDESU" ]; then
-      ln -s "$KF5KDESU" "$KDESU"
-    fi
-    # Set sgid on kdesud
-    if [ -e "$KF5KDESUD" ]; then
-      chmod g+s "$KF5KDESUD"
-    fi
-
-    # Configure LightDM
-    CONF='/etc/lightdm/lightdm-gtk-greeter.conf'
-    if [ -e '/etc/lightdm/lightdm-kde-greeter.conf' ]; then
-      CONF='/etc/lightdm/lightdm-kde-greeter.conf'
-    fi
-    if [ -e $CONF ]; then
-      if ! grep -q 'solydk-lightdmbg' $CONF; then
-        sed_append_sting 'background=' 'background=/usr/share/images/desktop-base/solydk-lightdmbg.png' $CONF
-        sed_append_sting 'theme-name=' 'theme-name=Breeze' $CONF
-        sed_append_sting 'icon-theme-name=' 'icon-theme-name=evolvere-2-blue' $CONF
-      fi
-      sed_append_sting 'default-user-image=' 'default-user-image=/usr/share/pixmaps/faces/user-generic.png' $CONF
-      sed_append_sting 'font-name=' 'font-name=Clear Sans 11' $CONF
-      sed_append_sting 'position=' 'position=60% 30%' $CONF
-      sed_append_sting 'transition-duration=' 'transition-duration=1000' $CONF
-      sed_append_sting 'user-background=' 'user-background=false' $CONF
-      sed_append_sting 'xft-antialias=' 'xft-antialias=true' $CONF
-      sed_append_sting 'xft-dpi=' 'xft-dpi=96' $CONF
-      sed_append_sting 'xft-hintstyle=' 'xft-hintstyle=slight' $CONF
-      sed_append_sting 'xft-rgba=' 'xft-rgba=rgb' $CONF
-      sed_append_sting 'show-indicators=' 'show-indicators=~host;~spacer;~session;~language;~a11y;~clock;~power;' $CONF
-      sed_append_sting 'show-clock=' 'show-clock=true' $CONF
-      sed_append_sting 'clock-format=' 'clock-format=%d %b, %H:%M' $CONF
-      sed -i 's/greybird-solydk/Breeze/' $CONF
-      sed -i 's/lightdmbg-flat/lightdmbg/g' $CONF
-    fi
-
-    CONF='/etc/lightdm/lightdm.conf'
-    if [ -e $CONF ]; then
-      sed -i 's/^#greeter-hide-users=/greeter-hide-users=false/' $CONF
-      sed -i 's/^#allow-user-switching=.*/allow-user-switching=true/' $CONF
-    fi
-
-    CONF='/etc/lightdm/users.conf'
-    if [ -e $CONF ]; then
-      sed -i -e '/^minimum-uid=/ c minimum-uid=1000' $CONF
-    fi
-
-    # Change Grub2 Theme
-    UPDGRUB=false
-    DEFGRUB='/etc/default/grub'
-    GRUBTHEMES='/boot/grub/themes'
-    if [ -f "$DEFGRUB" ]; then
-      UPDGRUB=true
-
-      # Set Grub theme
-      if grep -q '^GRUB_THEME=' $DEFGRUB; then
-        if $(grep -qs "/solydxk/theme.txt" $DEFGRUB); then
-          # Keep the dark theme for upgrade users
-          sed -i 's|# Set theme|# Check available themes in /boot/grub/themes|' $DEFGRUB
-          sed -i 's|^GRUB_THEME=.*|GRUB_THEME=/boot/grub/themes/solydxk-dark/theme.txt|' $DEFGRUB
+    configure|reconfigure)
+        # Create a link to kdesu in /usr/bin
+        KDESU='/usr/bin/kdesu'
+        KF5KDESU="$(kf5-config --path libexec)kf5/kdesu"
+        KF5KDESUD="$KF5KDESU"d
+        if [ ! -e "$KDESU" ] && [ -e "$KF5KDESU" ]; then
+            ln -s "$KF5KDESU" "$KDESU"
         fi
-      else
-        if ! grep -q 'GRUB_THEME=' $DEFGRUB; then
-          # Only append if GRUB_THEME= is not in DEFGRUB
-          echo -e '\n# Check available themes in /boot/grub/themes\nGRUB_THEME=/boot/grub/themes/solydxk-light/theme.txt' >> $DEFGRUB
+        # Set sgid on kdesud
+        if [ -e "$KF5KDESUD" ]; then
+            chmod g+s "$KF5KDESUD"
         fi
-      fi
 
-      # Enable os-prober
-      if grep -q 'GRUB_DISABLE_OS_PROBER=' $DEFGRUB; then
-        sed -i 's|# GRUB_DISABLE_OS_PROBER|GRUB_DISABLE_OS_PROBER|' $DEFGRUB
-      else
-        # Only append if GRUB_DISABLE_OS_PROBER= is not in DEFGRUB
-        echo -e '\n# Disable os-prober\nGRUB_DISABLE_OS_PROBER=false' >> $DEFGRUB
-      fi
-    fi
+        # Configure LightDM
+        CONF='/etc/lightdm/lightdm-gtk-greeter.conf'
+        if [ -e $CONF ]; then
+            if $ISCHROOT; then
+                # Only run this if configuring for ISO build
+                # This will keep user changes in a running system
+                echo "Configure $CONF"
+                sed_append_sting '^background\s*=.*' 'background=/usr/share/desktop-base/solydk-light-theme/login/background.svg' $CONF
+                sed_append_sting '^theme-name\s*=.*' 'theme-name=Breeze' $CONF
+                sed_append_sting '^icon-theme-name\s*=.*' 'icon-theme-name=evolvere-2-blue' $CONF
+                sed_append_sting '^default-user-image\s*=.*' 'default-user-image=/usr/share/pixmaps/faces/user-generic.png' $CONF
+                sed_append_sting '^font-name\s*=.*' 'font-name=Clear Sans 11' $CONF
+                sed_append_sting '^position\s*=.*' 'position=60% 30%' $CONF
+                sed_append_sting '^transition-duration\s*=.*' 'transition-duration=1000' $CONF
+                sed_append_sting '^user-background\s*=.*' 'user-background=false' $CONF
+                sed_append_sting '^xft-antialias\s*=.*' 'xft-antialias=true' $CONF
+                sed_append_sting '^xft-dpi\s*=.*' 'xft-dpi=96' $CONF
+                sed_append_sting '^xft-hintstyle\s*=.*' 'xft-hintstyle=slight' $CONF
+                sed_append_sting '^xft-rgba\s*=.*' 'xft-rgba=rgb' $CONF
+                sed_append_sting '^show-indicators\s*=.*' 'show-indicators=~host;~spacer;~session;~language;~a11y;~clock;~power;' $CONF
+                sed_append_sting '^show-clock\s*=.*' 'show-clock=true' $CONF
+                sed_append_sting '^clock-format\s*=.*' 'clock-format=%d %b, %H:%M' $CONF
+            fi
+            sed -i 's/lightdmbg.png/lightdmbg-light.svg/' $CONF
+            sed -i 's/lightdmbg-dark.png/lightdmbg-dark.svg/' $CONF
+        fi
 
-    # Change Plymouth theme when needed
-    CONF='/etc/plymouth/plymouthd.conf'
-    if [ -e $CONF ]; then
-      CURTHEME=$(grep '^Theme' "$CONF" | awk -F'=' '{print $2}')
-      if [[ "$CURTHEME" == "$PLYMOUTH_THEME"* ]]; then
-        PLYMOUTH_THEME=$CURTHEME
-      fi
-      if grep -q "$PLYMOUTH_THEME" "$CONF"; then
-        plymouth-set-default-theme -R "$PLYMOUTH_THEME"
-        UPDGRUB=true
-      fi
-    fi
+        CONF='/etc/lightdm/lightdm.conf'
+        if [ -e $CONF ]; then
+            sed -i 's/^#greeter-hide-users=.*/greeter-hide-users=false/' $CONF
+            sed -i 's/^#allow-user-switching=.*/allow-user-switching=true/' $CONF
+        fi
 
-    # Update Grub2
-    if $UPDGRUB && [ -e /usr/sbin/update-grub ]; then
-      update-grub
-    fi
+        CONF='/etc/lightdm/users.conf'
+        if [ -e $CONF ]; then
+            sed -i -e '/^minimum-uid=/ c minimum-uid=1000' $CONF
+        fi
 
-    GPG='/etc/skel/.gnupg'
-    if [ -e $GPG ]; then
-      chmod 700 $GPG
-    fi
+        # Change Grub2 Theme
+        UPDGRUB=false
+        DEFGRUB='/etc/default/grub'
+        GRUBTHEMES='/usr/share/grub/themes'
+        if [ -f "$DEFGRUB" ]; then
+            UPDGRUB=true
 
-    DOLPHINDIR='/usr/share/kxmlgui5/dolphin'
-    if [ ! -d "$DOLPHINDIR" ]; then
-      mkdir -p "$DOLPHINDIR"
-    fi
+            # Set Grub theme
+            if grep -q '^GRUB_THEME=' $DEFGRUB; then
+                if grep -q "/solydxk/theme.txt" $DEFGRUB; then
+                    # Keep the dark theme for upgrade users
+                    sed -i "s|# Set theme|# Check available themes in $GRUBTHEMES|" $DEFGRUB
+                    sed -i "s|^GRUB_THEME=.*|GRUB_THEME=$GRUBTHEMES/solydk-dark/theme.txt|" $DEFGRUB
+                else
+                    sed -i "s|/boot/grub/themes|$GRUBTHEMES|" $DEFGRUB
+                    sed -i "s|$GRUBTHEMES/solydxk|$GRUBTHEMES/solydk|" $DEFGRUB
+                fi
+            else
+                if ! grep -q 'GRUB_THEME=' $DEFGRUB; then
+                    # Only append if GRUB_THEME= is not in DEFGRUB
+                    echo -e "\n# Check available themes in $GRUBTHEMES\nGRUB_THEME=$GRUBTHEMES/solydk-light/theme.txt" >> $DEFGRUB
+                fi
+            fi
 
-    install_root_files
-    adust_trigger_files
+            # Enable os-prober
+            if grep -q 'GRUB_DISABLE_OS_PROBER=' $DEFGRUB; then
+                sed -i 's|# GRUB_DISABLE_OS_PROBER|GRUB_DISABLE_OS_PROBER|' $DEFGRUB
+            else
+                # Only append if GRUB_DISABLE_OS_PROBER= is not in DEFGRUB
+                echo -e '\n# Disable os-prober\nGRUB_DISABLE_OS_PROBER=false' >> $DEFGRUB
+            fi
+        fi
 
-  ;;
+        # Change Plymouth theme when needed
+        CONF='/etc/plymouth/plymouthd.conf'
+        if [ -e $CONF ]; then
+            if $ISCHROOT; then
+                echo "Configure $CONF"
+                plymouth-set-default-theme -R "$PLYMOUTH_THEME"
+                UPDGRUB=true
+            fi
+            sed -i "s/solydk-logo/$PLYMOUTH_THEME/" $CONF
+        fi
 
-  upgrade|update)
-  ;;
+        # Update Grub2
+        if $UPDGRUB && [ -e /usr/sbin/update-grub ]; then
+            update-grub
+        fi
 
-  abort-upgrade|abort-remove|abort-deconfigure)
-  ;;
+        GPG='/etc/skel/.gnupg'
+        if [ -e $GPG ]; then
+            chmod 700 $GPG
+        fi
 
-  triggered)
-    adust_trigger_files
-  ;;
+        DOLPHINDIR='/usr/share/kxmlgui5/dolphin'
+        if [ ! -d "$DOLPHINDIR" ]; then
+            mkdir -p "$DOLPHINDIR"
+        fi
 
-  *)
-    echo "postinst called with unknown argument \`$1'" >&2
-    exit 1
-  ;;
+        install_root_files
+        adust_trigger_files
+        updates-alternatives
+
+    ;;
+
+    upgrade|update)
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    triggered)
+        adust_trigger_files
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
 esac
 
 # dh_installdeb will replace this with shell code automatically

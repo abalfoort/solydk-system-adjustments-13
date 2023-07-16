@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=SolydK Dark Static
+Description=SolydK Dark Plymouth Theme - Static Image.
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/solydk-dark-static
+ScriptFile=/usr/share/plymouth/themes/solydk-dark-static/solydk-dark-static.script

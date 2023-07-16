@@ -1,0 +1,19 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "arjenbalfoort@hotmail.com",
+                "Name": "Arjen Balfoort"
+            }
+        ],
+        "Category": "",
+        "Description": "SolydK Black by Arjen Balfoort",
+        "EnabledByDefault": true,
+        "Id": "solydk-black",
+        "License": "LGPL",
+        "Name": "SolydK Black",
+        "Version": "5.103.0",
+        "Website": "https://solydxk.com"
+    },
+    "X-Plasma-API": "5.0"
+}

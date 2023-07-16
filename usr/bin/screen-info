@@ -1,0 +1,58 @@
+#!/bin/bash
+
+function usage {
+    printf "
+Show screen resolution and/or aspect ratio.
+
+-r    Show resolution (widthxheight)
+-a    Show aspect ratio (width:height)
+-h    This help screen
+
+Without options both resolution and aspect ratio is displayed.
+"
+}
+
+function _ratio_devider {
+    if (($2 == 0)); then
+        echo $1
+        exit
+    fi
+    _ratio_devider $2 $(($1 % $2))
+}
+
+function aspect_ratio {
+    devider=$(_ratio_devider $1 $2)
+    echo "$(($1/$devider)):$(($2/$devider))"
+}
+
+function screen_resolution {
+    xdpyinfo | awk '/dimensions:/ {print $2}'
+}
+
+while getopts 'ahr' OPT; do
+    case $OPT in
+        r)
+             echo $(screen_resolution)
+             ;;
+        a)
+            RES=$(screen_resolution)
+            WH=$(echo $RES | sed 's/x/ /')
+            echo $(aspect_ratio $WH)
+            ;;
+        h)
+            usage
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+
+# git-branch called without option but with branch name
+if (( $OPTIND == 1 )); then
+    RES=$(screen_resolution)
+    echo "resolution: $RES"
+    WH=$(echo $RES | sed 's/x/ /')
+    RATIO=$(aspect_ratio $WH)
+    echo "ratio: $RATIO"
+fi

@@ -18,10 +18,11 @@
  */
 
 import QtQuick 2.5
+import QtQuick.Window 2.2
 
 // http://doc.qt.io/qt-5/qtquick-index.html
 // http://doc.qt.io/qt-5/qtquick-animation-example.html
-// ksplashqml SolydK --test
+// ksplashqml solydk-dark --test
 
 Rectangle {
     id: root
@@ -30,7 +31,7 @@ Rectangle {
     Rectangle {
         id: logobg
         color: "#8eb6c9"
-        width: root.width / 6
+        width: root.width / 5
         height: root.height
         anchors.right: root.right
         
@@ -41,7 +42,7 @@ Rectangle {
             anchors.horizontalCenter: logobg.horizontalCenter
             anchors.topMargin: 40
             source: "images/solydk.svgz"
-            sourceSize.width: logobg.width / 1.5
+            sourceSize.width: logobg.width / 1.8
             SequentialAnimation on opacity {
                 loops: Animation.Infinite
                 OpacityAnimator{

@@ -1,8 +1,0 @@
-[Plymouth Theme]
-Name=SolydK Dark
-Description=SolydK Dark Plymouth Theme.
-ModuleName=script
-
-[script]
-ImageDir=/usr/share/plymouth/themes/solydk-logo-dark
-ScriptFile=/usr/share/plymouth/themes/solydk-logo-dark/solydk-logo-dark.script

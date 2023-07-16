@@ -1,20 +1,5 @@
-[General]
-ColorScheme=SolydK
-fixed=Monospace,10,-1,0,50,0,0,0,0,0
-font=Clear Sans,11,-1,0,50,0,0,0,0,0
-menuFont=Clear Sans,11,-1,0,50,0,0,0,0,0
-smallestReadableFont=Clear Sans,10,-1,0,50,0,0,0,0,0
-toolBarFont=Clear Sans,10,-1,0,50,0,0,0,0,0
-
-[Icons]
-Theme=evolvere-2-blue
-
 [KDE]
 widgetStyle=Breeze
-LookAndFeelPackage=org.kde.solydk.desktop
+LookAndFeelPackage=org.kde.solydklight.desktop
 ShowDeleteCommand=false
 SingleClick=false
-
-[WM]
-activeFont=Clear Sans,11,-1,0,75,0,0,0,0,0
-

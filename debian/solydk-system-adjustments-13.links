@@ -1,3 +1,12 @@
-/usr/share/plasma/desktoptheme/solydk/colors /usr/share/color-schemes/SolydK.colors
+/usr/share/plasma/desktoptheme/solydk-light/colors /usr/share/color-schemes/SolydKLight.colors
+/usr/share/plasma/desktoptheme/solydk-black/colors /usr/share/color-schemes/SolydKBlack.colors
 /usr/share/plasma/desktoptheme/solydk-dark/colors /usr/share/color-schemes/SolydKDark.colors
-
+/usr/share/desktop-base/solydk-light-theme/login/background.svg /usr/share/images/desktop-base/solydk-lightdmbg-light.svg
+/usr/share/desktop-base/solydk-black-theme/login/background.svg /usr/share/images/desktop-base/solydk-lightdmbg-black.svg
+/usr/share/desktop-base/solydk-dark-theme/login/background.svg /usr/share/images/desktop-base/solydk-lightdmbg-dark.svg
+/usr/share/plymouth/themes/solydk-light /usr/share/desktop-base/solydk-light-theme/plymouth
+/usr/share/plymouth/themes/solydk-black /usr/share/desktop-base/solydk-black-theme/plymouth
+/usr/share/plymouth/themes/solydk-dark /usr/share/desktop-base/solydk-dark-theme/plymouth
+/usr/share/desktop-base/solydk-black-theme/wallpaper /usr/share/wallpapers/solydk-black
+/usr/share/desktop-base/solydk-dark-theme/wallpaper /usr/share/wallpapers/solydk-dark
+/usr/share/desktop-base/solydk-light-theme/wallpaper /usr/share/wallpapers/solydk-light

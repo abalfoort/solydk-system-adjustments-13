@@ -42,10 +42,26 @@ function remove_divert {
     fi
 }
 
+function updates-alternatives {
+    # Set default theme
+    update-alternatives --remove desktop-theme /usr/share/desktop-base/solydk-light-theme
+    update-alternatives --remove desktop-theme /usr/share/desktop-base/solydk-dark-theme
+    update-alternatives --remove desktop-theme /usr/share/desktop-base/solydk-black-theme
+
+    # Set grub background to black
+    update-alternatives --remove desktop-grub /usr/share/desktop-base/solydk-light-theme/grub/grub-16x9.png
+    update-alternatives --remove desktop-grub /usr/share/desktop-base/solydk-light-theme/grub/grub-4x3.png
+    update-alternatives --remove desktop-grub /usr/share/desktop-base/solydk-dark-theme/grub/grub-16x9.png
+    update-alternatives --remove desktop-grub /usr/share/desktop-base/solydk-dark-theme/grub/grub-4x3.png
+    update-alternatives --remove desktop-grub /usr/share/desktop-base/solydk-black-theme/grub/grub-16x9.png
+    update-alternatives --remove desktop-grub /usr/share/desktop-base/solydk-black-theme/grub/grub-4x3.png
+}
+
 case "$1" in
     remove|purge)
         # Remove diversions
         remove_divert 'solydk-system-adjustments-13'
+        updates-alternatives
     ;;
     *)
     ;;
