@@ -1,3 +1,9 @@
+solydk-system-adjustments-13 (1.0.8) stable; urgency=low
+
+  * Move postinst logic to iso-constructor
+
+ -- Arjen Balfoort <arjenbalfoort@hotmail.com>  Sat, 22 Jul 2023 19:04:10 +0200
+
 solydk-system-adjustments-13 (1.0.7) stable; urgency=low
 
   * Fix postrm
