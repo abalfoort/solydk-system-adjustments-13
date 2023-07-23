@@ -3,3 +3,15 @@ widgetStyle=Breeze
 LookAndFeelPackage=org.kde.solydklight.desktop
 ShowDeleteCommand=false
 SingleClick=false
+
+[General]
+desktopFont=Clear Sans,11,-1,5,50,0,0,0,0,0
+fixed=Monospace,11,-1,5,50,0,0,0,0,0
+font=Clear Sans,11,-1,5,50,0,0,0,0,0
+menuFont=Clear Sans,11,-1,5,50,0,0,0,0,0
+smallestReadableFont=Clear Sans,10,-1,5,50,0,0,0,0,0
+taskbarFont=Clear Sans,11,-1,5,50,0,0,0,0,0
+toolBarFont=Clear Sans,10,-1,5,50,0,0,0,0,0
+
+[WM]
+activeFont=Clear Sans,11,-1,5,75,0,0,0,0,0
