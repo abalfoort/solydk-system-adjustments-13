@@ -24,8 +24,8 @@ terminal-border: "0"
         top = 100%-24
         height = 24
         width = 100%
-        font = "Unifont Regular 20"
-        text_color = "#274452"
+        font = "Unifont Regular 16"
+        text_color = "#305566"
         fg_color = "#7eacc1"
         bg_color = "#8eb6c9"
         border_color = "#8eb6c9"
@@ -38,10 +38,10 @@ terminal-border: "0"
     width = 75%
     top = 50%
     height = 200
-    item_font = "Unifont Regular 20"
-    selected_item_font = "Unifont Regular 20"
-    item_color = "#274452"
-    selected_item_color= "#ffffff"
+    item_font = "Unifont Regular 16"
+    selected_item_font = "Unifont Bold 16"
+    item_color = "#305566"
+    selected_item_color= "#000000"
     icon_height = 20
     icon_width = 20
     item_height = 24
