@@ -1,3 +1,9 @@
+solydk-system-adjustments-13 (1.1.2) stable; urgency=low
+
+  * Larger Grub font size
+
+ -- Arjen Balfoort <arjenbalfoort@hotmail.com>  Thu, 16 Nov 2023 12:26:54 +0100
+
 solydk-system-adjustments-13 (1.1.1) stable; urgency=low
 
   * Move /lib to /usr/lib
