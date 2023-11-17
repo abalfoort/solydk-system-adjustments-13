@@ -6,9 +6,9 @@
 # Copyright 2023 Arjen Balfoort
 
 #general settings
-title-font: "Unifont Regular 16"
-message-font: "Unifont Regular 16"
-terminal-font: "Unifont Regular 16"
+title-font: "Unifont Regular 20"
+message-font: "Unifont Regular 20"
+terminal-font: "Unifont Regular 20"
 title-text: ""
 desktop-image: "bg.png"
 terminal-left: "0"
@@ -24,7 +24,7 @@ terminal-border: "0"
         top = 100%-24
         height = 24
         width = 100%
-        font = "Unifont Regular 16"
+        font = "Unifont Regular 20"
         text_color = "#8eb6c9"
         fg_color = "#243e4b"
         bg_color = "#2a4958"
@@ -38,8 +38,8 @@ terminal-border: "0"
     width = 75%
     top = 50%
     height = 200
-    item_font = "Unifont Regular 16"
-    selected_item_font = "Unifont Bold 16"
+    item_font = "Unifont Regular 20"
+    selected_item_font = "Unifont Bold 20"
     item_color = "#8eb6c9"
     selected_item_color= "#ffffff"
     icon_height = 20
