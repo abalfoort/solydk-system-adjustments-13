@@ -1,4 +1,5 @@
 {
+    "KPackageStructure": "Plasma/LookAndFeel",
     "KPlugin": {
         "Authors": [
             {
@@ -6,16 +7,17 @@
                 "Name": "Arjen Balfoort"
             }
         ],
-        "Category": "",
-        "Description": "SolydK Dark by Arjen Balfoort",
-        "Id": "org.kde.solydkdark.desktop",
-        "License": "GPLv2+",
-        "Name": "SolydK Dark",
+        "Category": "Global Themes (Plasma 6)",
         "ServiceTypes": [
             "Plasma/LookAndFeel"
         ],
-        "Version": "2.0",
-        "Website": "https://www.kde.org"
+        "EnabledByDefault": true,
+        "Name": "SolydK Dark",
+        "Description": "SolydK Dark by Arjen Balfoort",
+        "Id": "org.kde.solydkdark.desktop",
+        "Version": "6.1",
+        "License": "GPLv2+",
+        "Website": "https://solydxk.com"
     },
     "Keywords": "Desktop;Workspace;Appearance;Look and Feel;Logout;Lock;Suspend;Shutdown;Hibernate;",
     "Keywords[ar]": "سطح المكتب;مساحة العمل;المظهر;المظهر والإحساس;اخرج;Lock;علق;أطفئ;أسبت;",

@@ -12,7 +12,7 @@
         "Id": "solydk-light",
         "License": "LGPL",
         "Name": "SolydK Light",
-        "Version": "5.103.0",
+        "Version": "6.1",
         "Website": "https://solydxk.com"
     },
     "X-Plasma-API": "5.0"
