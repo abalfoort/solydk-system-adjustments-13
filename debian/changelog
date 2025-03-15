@@ -1,3 +1,47 @@
+solydk-system-adjustments-13 (1.1.9) stable; urgency=low
+
+  * Font size +1
+  * Update default panel settings
+
+ -- Arjen Balfoort <arjenbalfoort@hotmail.com>  Wed, 12 Mar 2025 12:38:25 +0100
+
+solydk-system-adjustments-13 (1.1.8) stable; urgency=low
+
+  * Add SDDM theme
+
+ -- Arjen Balfoort <arjenbalfoort@hotmail.com>  Thu, 06 Feb 2025 16:11:27 +0100
+
+solydk-system-adjustments-13 (1.1.7) stable; urgency=low
+
+  * Change dep plasma-framework to plasma-workspace
+  * Add widgets to system tray
+
+ -- Arjen Balfoort <arjenbalfoort@hotmail.com>  Mon, 03 Feb 2025 10:52:01 +0100
+
+solydk-system-adjustments-13 (1.1.6) stable; urgency=low
+
+  * Move kservices5 service menus to /usr/share/kio/servicemenus
+
+ -- Arjen Balfoort <arjenbalfoort@hotmail.com>  Tue, 28 Jan 2025 09:09:03 +0100
+
+solydk-system-adjustments-13 (1.1.5) stable; urgency=low
+
+  * Adapt for Plasma 6
+
+ -- Arjen Balfoort <arjenbalfoort@hotmail.com>  Tue, 21 Jan 2025 15:23:40 +0100
+
+solydk-system-adjustments-13 (1.1.4) stable; urgency=low
+
+  * Remove depends gtk3-engines-breeze
+
+ -- Arjen Balfoort <arjenbalfoort@hotmail.com>  Sun, 01 Dec 2024 19:31:17 +0100
+
+solydk-system-adjustments-13 (1.1.3) stable; urgency=low
+
+  * Added /xdg/kicker-extra-favoritesrc 
+
+ -- Arjen Balfoort <arjenbalfoort@hotmail.com>  Wed, 07 Aug 2024 09:45:12 +0200
+
 solydk-system-adjustments-13 (1.1.2) stable; urgency=low
 
   * Larger Grub font size
