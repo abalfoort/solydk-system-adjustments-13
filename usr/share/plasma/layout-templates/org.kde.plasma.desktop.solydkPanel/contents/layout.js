@@ -28,68 +28,108 @@ if (freeEdges["bottom"] == true) {
 }
 
 // Set panel height
-panel.height = 42
+// For an Icons-Only Task Manager on the bottom, *3 is too much, *2 is too little
+// Round down to next highest even number since the Panel size widget only displays
+// even numbers
+panel.height = 2 * Math.floor(gridUnit * 2.2 / 2)
+
+// Restrict horizontal panel to a maximum size of a 21:9 monitor
+const maximumAspectRatio = 21/9;
+if (panel.formFactor === "horizontal") {
+    const geo = screenGeometry(panelScreen);
+    const maximumWidth = Math.ceil(geo.height * maximumAspectRatio);
+
+    if (geo.width > maximumWidth) {
+        panel.alignment = "center";
+        panel.minimumLength = maximumWidth;
+        panel.maximumLength = maximumWidth;
+    }
+}
 
 // Create start menu
-var simplemenu = panel.addWidget("org.kde.plasma.kicker")
-simplemenu.currentConfigGroup = ["Shortcuts"]
-simplemenu.writeConfig("global", "Alt+F1")
-
-simplemenu.writeConfig("icon", "solydk")
-simplemenu.writeConfig("favoriteApps", [
-    'preferred://browser',
-    'thunderbird.desktop',
-    'libreoffice-startcenter.desktop',
-    'org.kde.discover.desktop',
-    'systemsettings.desktop',
-    'org.kde.konsole.desktop'
+// https://develop.kde.org/docs/plasma/scripting/keys/
+var kicker = panel.addWidget("org.kde.plasma.kicker")
+kicker.currentConfigGroup = ["Shortcuts"]
+kicker.writeConfig("global", "Alt+F1")
+kicker.writeConfig("icon", "solydk")
+kicker.writeConfig("favoriteApps", [
+    "preferred://browser",
+    "preferred://mailer",
+    "applications:libreoffice-startcenter.desktop",
+    "applications:org.kde.discover.desktop",
+    "applications:systemsettings.desktop",
+    "preferred://terminal"
 ])
-simplemenu.writeConfig("limitDepth", true)
-simplemenu.writeConfig("alphaSort", true)
+kicker.writeConfig("alignResultsToBottom", true)
+kicker.writeConfig("alphaSort", true)
+
+//var kickoff = panel.addWidget("org.kde.plasma.kickoff")
+//kickoff.currentConfigGroup = ["Shortcuts"]
+//kickoff.writeConfig("global", "Alt+F1")
+//kickoff.writeConfig("icon", "solydk")
+//kickoff.writeConfig("favorites", [
+//    "preferred://browser",
+//    "preferred://mailer",
+//    "applications:libreoffice-startcenter.desktop",d
+//    "applications:org.kde.discover.desktop",
+//    "applications:systemsettings.desktop",
+//    "preferred://terminal"
+//])
+//kickoff.writeConfig("favoritesDisplay", 1)
+//kickoff.writeConfig("alphaSort", true)
+//kickoff.writeConfig("showActionButtonCaptions", false)
+//kickoff.writeConfig("switchCategoryOnHover", true)
 
 // Add show desktop
 var showdt = panel.addWidget("org.kde.plasma.showdesktop")
 showdt.currentConfigGroup = ["Shortcuts"]
 showdt.writeConfig("global", "Alt+D")
-showdt.currentConfigGroup = ["General"]
-showdt.writeConfig("icon", "folder-desktop") 
+//showdt.currentConfigGroup = ["General"]
+//showdt.writeConfig("icon", "folder-desktop") 
 
 // Add dolphin
-var icon = panel.addWidget("org.kde.plasma.icon")
-icon.writeConfig("url", ["file:///usr/share/applications/org.kde.dolphin.desktop"])
+//var icon = panel.addWidget("org.kde.plasma.icon")
+//icon.writeConfig("url", ["file:///usr/share/applications/org.kde.dolphin.desktop"])
 
 // Add taskmanager
 var task = panel.addWidget("org.kde.plasma.taskmanager")
-task.writeConfig("launchers", [])
+task.writeConfig("launchers", ["preferred://filemanager"])
 task.writeConfig("showOnlyCurrentDesktop", true)
+task.writeConfig("showOnlyCurrentActivity", true)
 task.writeConfig("groupingStrategy", "0")
 task.writeConfig("maxStripes", "1")
-task.writeConfig("showOnlyCurrentActivity", true)
-task.writeConfig("showOnlyCurrentDesktop", true)
 task.writeConfig("sortingStrategy", "1")
 
 // Add system tray
 var systray = panel.addWidget("org.kde.plasma.systemtray")
 var systrayContainmentId = systray.readConfig("SystrayContainmentId")
 var systrayContainment = desktopById(systrayContainmentId)
+systrayContainment.writeConfig("scaleIconsToFit", true)
 systrayContainment.writeConfig("extraItems", [
-    'org.kde.plasma.volume',
-    'org.kde.plasma.devicenotifier',
-    'org.kde.plasma.networkmanagement',
-    'org.kde.discovernotifier',
-    'org.kde.plasma.diskquota',
-    'org.kde.plasma.bluetooth',
-    'org.kde.plasma.clipboard',
-    'org.kde.plasma.printmanager',
-    'org.kde.plasma.battery'
+    "org.kde.plasma.volume",
+    "org.kde.plasma.devicenotifier",
+    "org.kde.plasma.networkmanagement",
+    "org.kde.discovernotifier",
+    "org.kde.plasma.diskquota",
+    "org.kde.plasma.bluetooth",
+    "org.kde.plasma.clipboard",
+    "org.kde.plasma.printmanager",
+    "org.kde.plasma.battery",
+    "org.kde.plasma.keyboardlayout",
+    "org.kde.plasma.brightness",
+    "org.kde.plasma.kdeconnect",
+    "org.kde.plasma.vault",
+    "Fcitx"
 ])
-systrayContainment.writeConfig("hiddenItems",["org.kde.plasma.clipboard"])
+systrayContainment.writeConfig("hiddenItems",[
+    "org.kde.plasma.brightness",
+    "org.kde.plasma.vault",
+    "org.kde.plasma.keyboardlayout",
+    "Fcitx"
+])
 
 // Add notifications
-panel.addWidget("org.kde.plasma.notifications")
-
-// Add keyboardlayout
-panel.addWidget("org.kde.plasma.keyboardlayout")
+//panel.addWidget("org.kde.plasma.notifications")
 
 /* Next up is determining whether to add the Input Method Panel
  * widget to the panel or not. This is done based on whether
