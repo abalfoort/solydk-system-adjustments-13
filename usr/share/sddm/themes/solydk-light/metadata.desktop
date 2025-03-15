@@ -1,0 +1,17 @@
+[SddmGreeterTheme]
+Name=SolydK Light
+Description=SolydK Light
+Author=KDE Visual Design Group
+Copyright=(c) 2014, David Edmundson
+License=CC-BY-SA
+Type=sddm-theme
+Version=0.1
+Website=https://github.com/sddm/sddm
+Screenshot=preview.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Email=plasma-devel@kde.org
+Theme-Id=solydk-light
+Theme-API=2.0
+QtVersion=6

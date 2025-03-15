@@ -5,12 +5,24 @@ set -e
 #DEBHELPER#
 
 case "$1" in
-    configure|upgrade|update|reconfigure)
+    configure)
         # Update grub to show theme changes
         update-grub
-        ;;
         
+        # Add sddm theme
+        update-alternatives --install \
+        /usr/share/sddm/themes/debian-theme \
+        sddm-debian-theme \
+        /usr/share/sddm/themes/solydk-light 60
+        ;;
+    upgrade|update|reconfigure)
+        update-grub
+        ;;
     abort-upgrade|abort-remove|abort-deconfigure)
+        update-alternatives --install \
+        /usr/share/sddm/themes/debian-theme \
+        sddm-debian-theme \
+        /usr/share/sddm/themes/solydk-light 60
         ;;
         
     triggered)
