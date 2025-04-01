@@ -16,4 +16,5 @@ for (var j = 0; j < desktopsArray.length; j++) {
     desktopsArray[j].writeConfig("popups",false)
     desktopsArray[j].writeConfig("selectionMarkers",false)
     desktopsArray[j].writeConfig("sortMode","-1")
+    desktopsArray[j].writeConfig("arrangement", "1")
 }
