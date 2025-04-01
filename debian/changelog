@@ -1,3 +1,9 @@
+solydk-system-adjustments-13 (1.2.0) stable; urgency=low
+
+  * Change default desktop icon arrangement
+
+ -- Arjen Balfoort <arjenbalfoort@hotmail.com>  Tue, 01 Apr 2025 10:28:11 +0200
+
 solydk-system-adjustments-13 (1.1.9) stable; urgency=low
 
   * Font size +1
