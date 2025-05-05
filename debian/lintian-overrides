@@ -1,2 +1,3 @@
 binary-without-manpage
 desktop-command-not-in-package
+package-contains-file-in-etc-skel

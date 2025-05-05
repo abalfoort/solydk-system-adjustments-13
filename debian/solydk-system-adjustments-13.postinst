@@ -5,28 +5,236 @@ set -e
 #DEBHELPER#
 
 case "$1" in
-    configure)
-        # Update grub to show theme changes
-        update-grub
-        
+    configure|abort-upgrade|abort-remove|abort-deconfigure)
         # Add sddm theme
         update-alternatives --install \
         /usr/share/sddm/themes/debian-theme \
         sddm-debian-theme \
         /usr/share/sddm/themes/solydk-light 60
+
+        # Theme package alternatives
+        while read theme priority; do
+            update-alternatives --install \
+                /usr/share/desktop-base/active-theme \
+                desktop-theme \
+                /usr/share/desktop-base/$theme-theme $priority
+        done << EOF
+solydk-light 55
+solydk-dark 45
+solydk-black 45
+EOF
+
+        # Use active theme as highest priority for background
+        active_background=/usr/share/desktop-base/active-theme/wallpaper/contents/images/1920x1080.svg
+        if [ -e ${active_background} ]; then
+            update-alternatives --install \
+                /usr/share/images/desktop-base/desktop-background \
+                desktop-background ${active_background} 70
+        fi
+
+        # Alternatives for the background in theme packages
+        while read theme filename priority; do
+            update-alternatives --install \
+                /usr/share/images/desktop-base/desktop-background \
+                desktop-background \
+                /usr/share/desktop-base/$theme-theme/wallpaper/contents/images/$filename $priority
+        done << EOF
+solydk-light 1920x1080.svg 70
+solydk-light 1280x800.svg 55
+solydk-light 1280x1024.svg 55
+solydk-light 1600x1200.svg 55
+solydk-light 1920x1200.svg 55
+solydk-light 2560x1440.svg 55
+solydk-light 2560x1600.svg 55
+solydk-light 3200x1800.svg 55
+solydk-light 3200x2000.svg 55
+solydk-light 3840x2160.svg 55
+solydk-light 5120x2880.svg 55
+solydk-dark 1280x800.svg 55
+solydk-dark 1280x1024.svg 55
+solydk-dark 1600x1200.svg 55
+solydk-dark 1920x1080.svg 55
+solydk-dark 1920x1200.svg 55
+solydk-dark 2560x1440.svg 55
+solydk-dark 2560x1600.svg 55
+solydk-dark 3200x1800.svg 55
+solydk-dark 3200x2000.svg 55
+solydk-dark 3840x2160.svg 55
+solydk-dark 5120x2880.svg 55
+solydk-black 1280x800.svg 55
+solydk-black 1280x1024.svg 55
+solydk-black 1600x1200.svg 55
+solydk-black 1920x1080.svg 55
+solydk-black 1920x1200.svg 55
+solydk-black 2560x1440.svg 55
+solydk-black 2560x1600.svg 55
+solydk-black 3200x1800.svg 55
+solydk-black 3200x2000.svg 55
+solydk-black 3840x2160.svg 55
+solydk-black 5120x2880.svg 55
+EOF
+
+        # Set up an alternative for the XML version of the background
+        # (for GNOME)
+        # Highest priority for active theme
+        active_background_xml=/usr/share/desktop-base/active-theme/wallpaper/gnome-background.xml
+        if [ -e ${active_background_xml} ]; then
+            update-alternatives --install \
+                /usr/share/images/desktop-base/desktop-background.xml \
+                desktop-background.xml ${active_background_xml} 55
+        fi
+
+        # Alternatives for theme packages
+        while read theme priority; do
+            update-alternatives --install \
+                /usr/share/images/desktop-base/desktop-background.xml \
+                desktop-background.xml \
+                /usr/share/desktop-base/$theme-theme/wallpaper/gnome-background.xml $priority
+        done << EOF
+solydk-light 45
+solydk-dark 35
+solydk-black 35
+EOF
+
+        # Set up an alternative for the XML version of the lock screen
+        # (for GNOME)
+        # Highest priority for active theme
+        active_lockscreen=/usr/share/desktop-base/active-theme/lockscreen/gnome-background.xml
+        if [ -e ${active_lockscreen} ]; then
+            update-alternatives --install \
+                /usr/share/images/desktop-base/desktop-lockscreen.xml \
+                desktop-lockscreen.xml ${active_lockscreen} 55
+        fi
+
+        # Alternatives for theme packages
+        while read theme priority; do
+            update-alternatives --install \
+                /usr/share/images/desktop-base/desktop-lockscreen.xml \
+                desktop-lockscreen.xml \
+                /usr/share/desktop-base/$theme-theme/lockscreen/gnome-background.xml $priority
+        done << EOF
+solydk-light 45
+solydk-dark 35
+solydk-black 35
+EOF
+
+        # Set up an alternative for the wallpaper for Plasma 5/KDE
+        # Highest priority for active theme
+        active_plasma_wallpaper=/usr/share/desktop-base/active-theme/wallpaper
+        if [ -e ${active_plasma_wallpaper} ]; then
+            update-alternatives --install \
+                /usr/share/wallpapers/DebianTheme \
+                desktop-plasma5-wallpaper ${active_plasma_wallpaper} 55
+        fi
+
+        # Alternatives for theme packages
+        while read theme priority; do
+            update-alternatives --install \
+                /usr/share/wallpapers/DebianTheme \
+                desktop-plasma5-wallpaper \
+                /usr/share/desktop-base/$theme-theme/wallpaper $priority
+        done << EOF
+solydk-light 45
+solydk-dark 35
+solydk-black 35
+EOF
+
+        # Login theme
+        # Highest priority for active theme
+        active_login_background=/usr/share/desktop-base/active-theme/login/background.svg
+        if [ -e ${active_login_background} ]; then
+            update-alternatives --install /usr/share/images/desktop-base/login-background.svg \
+                desktop-login-background ${active_login_background} 55
+        fi
+
+        # Alternatives for theme packages
+        while read theme background priority; do
+            update-alternatives --install /usr/share/images/desktop-base/login-background.svg \
+                desktop-login-background \
+                /usr/share/desktop-base/$theme-theme/login/$background $priority
+        done << EOF
+solydk-light background.svg 45
+solydk-dark background.svg 35
+solydk-black background.svg 35
+EOF
+
+        # Set up an alternative for the GRUB background/colors config
+        # Highest priority for active theme
+        # Favor widescreen / hi-res background for efi installations detected
+        # by the presence of grub-efi* packages (not the grub-efi*-bin which don’t
+        # necessary account for grub being the active bootloader).
+        if dpkg-query --list grub-efi* | grep -v "^... grub-efi[^[:space:]]*-bin" | grep -q "^[ih][HUFWti] " ; then
+            echo "grub-efi* packages found, using 16/9 as default grub background ratio"
+            grub_first_ratio="16x9"
+            grub_second_ratio="4x3"
+        else
+            echo "No grub-efi* package found, using 4/3 as default grub background ratio"
+            grub_first_ratio="4x3"
+            grub_second_ratio="16x9"
+        fi
+
+        active_grub_background=/usr/share/desktop-base/active-theme/grub/grub_background.sh
+        active_grub_first_ratio=/usr/share/desktop-base/active-theme/grub/grub-${grub_first_ratio}.png
+        if [ -e ${active_grub_first_ratio} ] && [ -e ${active_grub_background} ]; then
+            update-alternatives --install \
+                /usr/share/images/desktop-base/desktop-grub.png \
+                desktop-grub ${active_grub_first_ratio} 55 \
+                --slave /usr/share/desktop-base/grub_background.sh \
+                desktop-grub.sh ${active_grub_background}
+        fi
+
+        active_grub_second_ratio=/usr/share/desktop-base/active-theme/grub/grub-${grub_second_ratio}.png
+        if [ -e ${active_grub_second_ratio} ] && [ -e ${active_grub_background} ]; then
+            update-alternatives --install \
+                /usr/share/images/desktop-base/desktop-grub.png \
+                desktop-grub ${active_grub_second_ratio} 45 \
+                --slave /usr/share/desktop-base/grub_background.sh \
+                desktop-grub.sh ${active_grub_background}
+        fi
+
+        # Alternatives for theme packages
+        while read theme ratio priority; do
+            update-alternatives --install /usr/share/images/desktop-base/desktop-grub.png \
+                desktop-grub \
+                /usr/share/desktop-base/$theme-theme/grub/grub-$ratio.png $priority \
+                --slave /usr/share/desktop-base/grub_background.sh \
+                desktop-grub.sh \
+                /usr/share/desktop-base/$theme-theme/grub/grub_background.sh
+        done << EOF
+solydk-light 4x3 45
+solydk-light 16x9 45
+solydk-dark 4x3 35
+solydk-dark 16x9 35
+solydk-black 4x3 35
+solydk-black 16x9 35
+EOF
+
+        # Apply GRUB background update into /boot
+        # Try detecting active grub packages (so not -doc, -common, -bin) as a hint
+        # that GRUB is being used as bootloader before calling update-grub.
+        # Some people use the *-bin packages without using GRUB as bootloader
+        # (see #851893 for more context).
+        if dpkg-query --list "grub-*" | grep -v "^... grub\(-common\|-emu\|[^[:space:]]*\(-bin\|-doc\)\)" | grep -q "^[ih][HUFWti] " \
+                && which update-grub > /dev/null ; then
+            # Ensure the background image file has actually been written to disc
+            # before updating.
+            sync
+            # Report success whatever grub return status. This is needed at least
+            # in live systems fon installation to succeed (see #850601).
+            # Until we find a better solution like detecting we’re in a live image
+            # and not calling update-grub at all.
+            update-grub || echo "Updating grub failed, report success anyway!"
+        fi
+
+        if which update-initramfs > /dev/null; then
+            update-initramfs -u
+        fi
+
         ;;
     upgrade|update|reconfigure)
         update-grub
         ;;
-    abort-upgrade|abort-remove|abort-deconfigure)
-        update-alternatives --install \
-        /usr/share/sddm/themes/debian-theme \
-        sddm-debian-theme \
-        /usr/share/sddm/themes/solydk-light 60
-        ;;
-        
     triggered)
-        run_scripts
         ;;
         
     *)
@@ -35,9 +243,4 @@ case "$1" in
     ;;
 esac
 
-# dh_installdeb will replace this with shell code automatically
-# generated by other debhelper scripts.
-
 #DEBHELPER#
-
-exit 0

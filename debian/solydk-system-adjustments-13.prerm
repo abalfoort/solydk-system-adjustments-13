@@ -1,10 +1,169 @@
 #!/bin/sh
+
 set -e
 
 if [ "$1" = "remove" ] || [ "$1" = "deconfigure" ]; then
+    # Remove SDDM theme
     update-alternatives --remove \
         sddm-solydk-theme \
         /usr/share/sddm/themes/solydk-light
+
+    # Remove background alternatives for theme packages
+    while read theme filename; do
+        update-alternatives --remove \
+            desktop-background \
+            /usr/share/desktop-base/$theme-theme/wallpaper/contents/images/$filename
+    done << EOF
+solydk-light 1920x1080.svg
+solydk-light 1280x800.svg
+solydk-light 1280x1024.svg
+solydk-light 1600x1200.svg
+solydk-light 1920x1200.svg
+solydk-light 2560x1440.svg
+solydk-light 2560x1600.svg
+solydk-light 3200x1800.svg
+solydk-light 3200x2000.svg
+solydk-light 3840x2160.svg
+solydk-light 5120x2880.svg
+solydk-dark 1280x800.svg
+solydk-dark 1280x1024.svg
+solydk-dark 1600x1200.svg
+solydk-dark 1920x1080.svg
+solydk-dark 1920x1200.svg
+solydk-dark 2560x1440.svg
+solydk-dark 2560x1600.svg
+solydk-dark 3200x1800.svg
+solydk-dark 3200x2000.svg
+solydk-dark 3840x2160.svg
+solydk-dark 5120x2880.svg
+solydk-black 1280x800.svg
+solydk-black 1280x1024.svg
+solydk-black 1600x1200.svg
+solydk-black 1920x1080.svg
+solydk-black 1920x1200.svg
+solydk-black 2560x1440.svg
+solydk-black 2560x1600.svg
+solydk-black 3200x1800.svg
+solydk-black 3200x2000.svg
+solydk-black 3840x2160.svg
+solydk-black 5120x2880.svg
+EOF
+
+    # *Last* remove background *highest priority* alternatives for active theme
+    update-alternatives --remove desktop-background /usr/share/desktop-base/active-theme/wallpaper/contents/images/1920x1080.svg
+
+    # Remove desktop-background.xml alternatives
+    # For theme packages
+    while read theme; do
+        update-alternatives --remove \
+            desktop-background.xml \
+            /usr/share/desktop-base/$theme-theme/wallpaper/gnome-background.xml
+    done << EOF
+solydk-light
+solydk-dark
+solydk-black
+EOF
+    # *Lastly* remove *highest priority* alternative for active theme
+    update-alternatives --remove \
+        desktop-background.xml \
+        /usr/share/desktop-base/active-theme/wallpaper/gnome-background.xml
+
+    # Remove desktop-lockscreen.xml alternatives
+    # For theme packages
+    while read theme; do
+        update-alternatives --remove \
+            desktop-lockscreen.xml \
+            /usr/share/desktop-base/$theme-theme/lockscreen/gnome-background.xml
+    done << EOF
+solydk-light
+solydk-dark
+solydk-black
+EOF
+    # *Last* remove *highest priority* alternative for active theme
+    update-alternatives --remove \
+        desktop-lockscreen.xml \
+        /usr/share/desktop-base/active-theme/lockscreen/gnome-background.xml
+
+    # Remove Plasma 5/KDE wallpaper alternatives
+    # For theme packages
+    while read theme; do
+        update-alternatives --remove \
+            desktop-plasma5-wallpaper \
+            /usr/share/desktop-base/$theme-theme/wallpaper
+    done << EOF
+solydk-light
+solydk-dark
+solydk-black
+EOF
+    # *Last* remove *highest priority* alternative for active theme
+    update-alternatives --remove \
+        desktop-plasma5-wallpaper \
+        /usr/share/desktop-base/active-theme/wallpaper
+
+    # Remove login theme alternatives
+    # For theme packages
+    # Alternative for theme packages
+    while read theme background; do
+        update-alternatives --remove \
+            desktop-login-background \
+            /usr/share/desktop-base/$theme-theme/login/$background
+    done << EOF
+solydk-light background.svg
+solydk-dark background.svg
+solydk-black background.svg
+EOF
+    # *Last* remove *highest priority* alternative for active theme
+    update-alternatives --remove \
+        desktop-login-background \
+        /usr/share/desktop-base/active-theme/login/background.svg
+
+    # Remove GRUB background alternatives
+    while read theme ratio; do
+        update-alternatives --remove \
+            desktop-grub \
+            /usr/share/desktop-base/$theme-theme/grub/grub-$ratio.png
+    done << EOF
+solydk-light 4x3
+solydk-light 16x9
+solydk-dark 4x3
+solydk-dark 16x9
+solydk-black 4x3
+solydk-black 16x9
+EOF
+    ## *Lastly* remove *highest priority* alternative
+    num_grub_efi_installed=$(dpkg-query --list "grub-efi*" 2> /dev/null | grep "^i" | wc -l)
+    if [ $num_grub_efi_installed -gt 0 ] ; then
+        remove_first_ratio=4x3
+        remove_last_ratio=16x9
+    else
+        remove_first_ratio=16x9
+        remove_last_ratio=4x3
+    fi
+    update-alternatives --remove \
+        desktop-grub.sh \
+        /usr/share/desktop-base/active-theme/grub/grub_background.sh
+    update-alternatives --remove \
+        desktop-grub \
+        /usr/share/desktop-base/active-theme/grub/grub-$remove_first_ratio.png
+    update-alternatives --remove \
+        desktop-grub \
+        /usr/share/desktop-base/active-theme/grub/grub-$remove_last_ratio.png
+
+    # Remove theme package alternatives
+    while read theme; do
+        update-alternatives --remove \
+            desktop-theme \
+            /usr/share/desktop-base/$theme-theme
+    done << EOF
+solydk-light
+solydk-dark
+solydk-black
+EOF
 fi
 
-# Tag to allow some debhelper commands to inject relevant code
+# dh_installdeb will replace this with shell code automatically
+# generated by other debhelper scripts.
+
+#DEBHELPER#
+
+exit 0
