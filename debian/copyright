@@ -1,19 +1,15 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: solydk-system-adjustments-13
-Upstream-Contact: Arjen Balfoort <arjenbalfoort@hotmail.com>
+Upstream-Contact: Arjen Balfoort <solydxk.abalfoort@tuta.com>
 Source: 
 
 Files: *
-Copyright: 2010 Arjen Balfoort <arjenbalfoort@hotmail.com>
+Copyright: 2010 Arjen Balfoort <solydxk.abalfoort@tuta.com>
 License: GPL-2+
 
 Files: debian/*
-Copyright: 2010 Arjen Balfoort <arjenbalfoort@hotmail.com>
+Copyright: 2010 Arjen Balfoort <solydxk.abalfoort@tuta.com>
 License: GPL-2+
-
-Files: usr/share/fonts/truetype/Roboto_Slab
-Copyright: 2019 Apache
-License: Apache-2.0
 
 License: GPL-2+
  This program is free software: you can redistribute it and/or modify
