@@ -1,3 +1,9 @@
+solydk-system-adjustments-13 (1.2.2) stable; urgency=low
+
+  * Add hicolor icon links
+
+ -- Arjen Balfoort <solydxk.abalfoort@tuta.com>  Mon, 12 May 2025 15:56:21 +0200
+
 solydk-system-adjustments-13 (1.2.1) stable; urgency=low
 
   * Add alternatives configuration
