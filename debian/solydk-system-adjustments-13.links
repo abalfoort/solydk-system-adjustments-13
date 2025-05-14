@@ -10,3 +10,5 @@
 /usr/share/desktop-base/solydk-black-theme/wallpaper /usr/share/wallpapers/solydk-black
 /usr/share/desktop-base/solydk-dark-theme/wallpaper /usr/share/wallpapers/solydk-dark
 /usr/share/desktop-base/solydk-light-theme/wallpaper /usr/share/wallpapers/solydk-light
+/usr/share/solydxk/artwork/solydk.svg /usr/share/icons/hicolor/scalable/apps/solydk.svg
+/usr/share/solydxk/artwork/solydk-black.svg /usr/share/icons/hicolor/scalable/apps/solydk-black.svg
